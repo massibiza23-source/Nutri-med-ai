@@ -84,6 +84,7 @@ Generate a delicious and healthy ${mealType}.`;
       systemInstruction,
       responseMimeType: "application/json",
       responseSchema: MEAL_SCHEMA,
+      maxOutputTokens: 2048,
       thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
     },
   });
@@ -146,6 +147,7 @@ Generate a new ${mealType} to replace the current one.`;
       systemInstruction,
       responseMimeType: "application/json",
       responseSchema: MEAL_SCHEMA,
+      maxOutputTokens: 2048,
       thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
     },
   });
@@ -267,6 +269,7 @@ Generate a complete daily meal plan (Breakfast, Lunch, Snack, Dinner).`;
       systemInstruction,
       responseMimeType: "application/json",
       responseSchema: DAILY_PLAN_SCHEMA,
+      maxOutputTokens: 4096,
       thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
     },
   });
@@ -313,12 +316,13 @@ Allergies: ${profile.allergies.join(", ")}
 Generate a complete 7-day weekly meal plan and shopping list.`;
 
   const response = await ai.models.generateContent({
-    model: MODEL_NAME,
+    model: PRO_MODEL_NAME,
     contents: [{ parts: [{ text: prompt }] }],
     config: {
       systemInstruction,
       responseMimeType: "application/json",
       responseSchema: WEEKLY_PLAN_SCHEMA,
+      maxOutputTokens: 8192,
       thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
     },
   });
@@ -365,12 +369,13 @@ IMPORTANT: To ensure the response fits, keep the "recipe" and "steps" fields CON
 Ensure maximum variety and no repetition.`;
 
   const response = await ai.models.generateContent({
-    model: MODEL_NAME,
+    model: PRO_MODEL_NAME,
     contents: [{ parts: [{ text: prompt }] }],
     config: {
       systemInstruction,
       responseMimeType: "application/json",
       responseSchema: MONTHLY_PLAN_SCHEMA,
+      maxOutputTokens: 8192,
       thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
     },
   });
